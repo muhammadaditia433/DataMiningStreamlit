@@ -4,6 +4,9 @@ import numpy as np
 import pandas as pd
 import plotly.graph_objects as go
 import plotly.express as px
+from pathlib import Path
+
+BASE_DIR = Path(__file__).parent
 
 st.set_page_config(
     page_title="Prediksi Harga Rumah Tangerang",
@@ -97,8 +100,8 @@ st.markdown("""
 # ── Load artifacts ───────────────────────────────────────────────────────────
 @st.cache_resource
 def load_artifacts():
-    model = joblib.load('model.pkl')
-    district_mean_price = joblib.load('district_mean_price.pkl')
+    model = joblib.load(BASE_DIR / 'model.pkl')
+    district_mean_price = joblib.load(BASE_DIR / 'district_mean_price.pkl')
     return model, district_mean_price
 
 model, district_mean_price = load_artifacts()
